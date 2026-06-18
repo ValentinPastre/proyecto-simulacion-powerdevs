@@ -22,7 +22,7 @@ Coupled
             {
             Name = GeneradorOrdenesMedicas
             Ports = 0 ; 1
-            Path = proyecto-bomba-infusion/ordenes.h
+            Path = proyecto-simulacion-powerdevs/ordenes.h
             Description = Atomic DEVS model
             Graphic
                 {
@@ -41,7 +41,7 @@ Coupled
             {
             Name = GeneradorFinBolsa
             Ports = 1 ; 1
-            Path = proyecto-bomba-infusion/finbolsa.h
+            Path = proyecto-simulacion-powerdevs/finbolsa.h
             Description = Atomic DEVS model
             Graphic
                 {
@@ -152,7 +152,7 @@ Coupled
                     {
                     Name = ActuadorBomba
                     Ports = 1 ; 1
-                    Path = proyecto-bomba-infusion/actuador.h
+                    Path = proyecto-simulacion-powerdevs/actuador.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -172,7 +172,7 @@ Coupled
                     {
                     Name = SensorFlujo
                     Ports = 1 ; 1
-                    Path = proyecto-bomba-infusion/sensorflujo.h
+                    Path = proyecto-simulacion-powerdevs/sensorflujo.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -190,7 +190,7 @@ Coupled
                     {
                     Name = Controlador
                     Ports = 4 ; 2
-                    Path = proyecto-bomba-infusion/controlador.h
+                    Path = proyecto-simulacion-powerdevs/controlador.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -208,7 +208,7 @@ Coupled
                     {
                     Name = Alarmas
                     Ports = 3 ; 1
-                    Path = proyecto-bomba-infusion/alarmas.h
+                    Path = proyecto-simulacion-powerdevs/alarmas.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -355,8 +355,8 @@ Coupled
                     {
                     Source = Pnt ;  4 ; -1 ; 0
                     Sink = Cmp ;  1 ;  1 ; -1
-                    PointX = 450 ; 450 ; 450 ; 450 ; 960
-                    PointY = -3750 ; -3750 ; -3750 ; -2025 ; -2025
+                    PointX = 450 ; 450 ; 450 ; 960
+                    PointY = -3750 ; -3750 ; -2025 ; -2025
                     }
                 }
             }
@@ -389,12 +389,12 @@ Coupled
                     {
                     Name = LoggerDeEventos
                     Ports = 6 ; 0
-                    Path = proyecto-bomba-infusion/logger.h
+                    Path = proyecto-simulacion-powerdevs/logger.h
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = 9195 ; -975
-                        Dimension = 675 ; 675
+                        Position = 9195 ; -1050
+                        Dimension = 675 ; 900
                         Direction = Right
                         Color = 15
                         Icon = None
@@ -408,7 +408,7 @@ Coupled
                     {
                     Name = GeneradorConfirmacionEnfermero
                     Ports = 1 ; 1
-                    Path = proyecto-bomba-infusion/confirmacionenf.h
+                    Path = proyecto-simulacion-powerdevs/confirmacionenf.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -517,8 +517,8 @@ Coupled
                     {
                     Source = Cmp ;  5 ;  1 ; -1
                     Sink = Pnt ;  2 ; -1 ; 0
-                    PointX = 9060 ; 9060 ; 75 ; 75
-                    PointY = -750 ; -750 ; -750 ; -1500
+                    PointX = 9060 ; 75 ; 75
+                    PointY = -975 ; -975 ; -1500
                     }
                 Line
                     {
@@ -538,8 +538,8 @@ Coupled
                     {
                     Source = Cmp ;  5 ;  5 ; -1
                     Sink = Pnt ;  3 ; -1 ; 0
-                    PointX = 9060 ; 9060 ; 525 ; 525
-                    PointY = -150 ; -150 ; -150 ; -4125
+                    PointX = 9060 ; 525 ; 525
+                    PointY = -375 ; -375 ; -4125
                     }
                 Line
                     {
@@ -552,8 +552,8 @@ Coupled
                     {
                     Source = Cmp ;  5 ;  6 ; -1
                     Sink = Pnt ;  4 ; -1 ; 0
-                    PointX = 9060 ; 9060 ; 6675 ; 6675
-                    PointY = 0 ; 0 ; 0 ; -5400
+                    PointX = 9060 ; 6675 ; 6675
+                    PointY = -225 ; -225 ; -5400
                     }
                 Line
                     {
@@ -566,8 +566,8 @@ Coupled
                     {
                     Source = Cmp ;  5 ;  2 ; -1
                     Sink = Pnt ;  5 ; -1 ; 0
-                    PointX = 9060 ; 9060 ; 6450 ; 6450
-                    PointY = -600 ; -600 ; -600 ; -5250
+                    PointX = 9060 ; 6450 ; 6450
+                    PointY = -825 ; -825 ; -5250
                     }
                 Line
                     {
@@ -623,7 +623,7 @@ Coupled
                     Source = Cmp ;  5 ;  4 ; -1
                     Sink = Pnt ;  8 ; -1 ; 0
                     PointX = 9060 ; 750 ; 750
-                    PointY = -300 ; -300 ; -2700
+                    PointY = -525 ; -525 ; -2700
                     }
                 Line
                     {
