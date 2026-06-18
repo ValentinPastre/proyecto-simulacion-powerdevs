@@ -1,0 +1,650 @@
+Coupled
+    {
+    Type = Root
+    Name = proyecto-bomba-infusion
+    Ports = 0; 0
+    Description = asdasd
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = GeneradorOrdenesMedicas
+            Ports = 0 ; 1
+            Path = proyecto-bomba-infusion/ordenes.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -1380 ; -1605
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                lambda_parameter = Val; 0.000277778 ; Tasa de generaciones de fin de bolsa.\nDebe estar expresada en segundos.\n\n0.000277778 =~ 1/3600 (media de 1h)
+                }
+            }
+        Atomic
+            {
+            Name = GeneradorFinBolsa
+            Ports = 1 ; 1
+            Path = proyecto-bomba-infusion/finbolsa.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -1380 ; -3030
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                capacity = Val; 100 ; Capacidad de la bolsa (en mililitros).\nDebe ser mayor o igual a 0
+                }
+            }
+        Coupled
+            {
+            Type = Coordinator
+            Name = Modelo Acoplado
+            Ports = 3; 3
+            Description = Modelo DEVS acoplado.\nRepresenta el sistema completo de la bomba de infusion.\nLos puertos de salida 1, 2 y 3 son unicamente para recopilacion de datos y para registrar la traza de ejecucion.
+            Graphic
+                {
+                Position = 4770; -5580
+                Dimension = 675; 675
+                Direction = Right
+                Color = 15
+                Icon = %basicelements%coupled.svg
+                Window = 5000; 5000; 5000; 5000
+                }
+            Parameters
+                {
+                }
+            System
+                {
+                Inport
+                    {
+                    Name = Inport0_Confirmaciones
+                    CoupledPort = 1
+                    Description = 
+                    Graphic
+                        {
+                        Position = -5490 ; -6225
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Inport
+                    {
+                    Name = Inport1_Ordenes
+                    CoupledPort = 2
+                    Description = 
+                    Graphic
+                        {
+                        Position = -5490 ; -4950
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Inport
+                    {
+                    Name = Inport2_FinBolsa
+                    CoupledPort = 3
+                    Description = 
+                    Graphic
+                        {
+                        Position = -5490 ; -3675
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = Outport0_Alarmas
+                    CoupledPort = 1
+                    Description = 
+                    Graphic
+                        {
+                        Position = 4560 ; -5250
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = Outport0_Actuador
+                    CoupledPort = 2
+                    Description = 
+                    Graphic
+                        {
+                        Position = 4635 ; -1800
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = Outport0_Sensor
+                    CoupledPort = 3
+                    Description = 
+                    Graphic
+                        {
+                        Position = 4635 ; 75
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Atomic
+                    {
+                    Name = ActuadorBomba
+                    Ports = 1 ; 1
+                    Path = proyecto-bomba-infusion/actuador.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = 1095 ; -2355
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        DELAY = Val; 0.5 ; Tiempo maximo que tarda el actuador de la bomba en iniciar.
+                        DETENER = Val; -3 ; Flag que indica la detencion del actuador de la bomba.
+                        }
+                    }
+                Atomic
+                    {
+                    Name = SensorFlujo
+                    Ports = 1 ; 1
+                    Path = proyecto-bomba-infusion/sensorflujo.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -2205 ; -2355
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        }
+                    }
+                Atomic
+                    {
+                    Name = Controlador
+                    Ports = 4 ; 2
+                    Path = proyecto-bomba-infusion/controlador.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -660 ; -3960
+                        Dimension = 570 ; 720
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        }
+                    }
+                Atomic
+                    {
+                    Name = Alarmas
+                    Ports = 3 ; 1
+                    Path = proyecto-bomba-infusion/alarmas.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = 2070 ; -5580
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        }
+                    }
+                Point
+                    {
+                    ConectedLines = 1 ; 4 ; 5
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -2400 ; -6000
+                    }
+                Point
+                    {
+                    ConectedLines = 6 ; 11 ; 12
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 2250 ; -1800
+                    }
+                Point
+                    {
+                    ConectedLines = 10 ; 13 ; 14
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -1200 ; -2775
+                    }
+                Point
+                    {
+                    ConectedLines = 9 ; 15 ; 16
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 450 ; -3750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  4 ; -1
+                    Sink = Pnt ;  1 ; -1 ; 0
+                    PointX = -840 ; -2400 ; -2400
+                    PointY = -3375 ; -3375 ; -6000
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  2 ; 0
+                    Sink = Cmp ;  4 ;  1 ; -1
+                    PointX = 75 ; 1125 ; 1125 ; 1935
+                    PointY = -3450 ; -3450 ; -5400 ; -5400
+                    }
+                Line
+                    {
+                    Source = Cmp ;  4 ;  1 ; 0
+                    Sink = Prt ;  4 ;  1 ; -1
+                    PointX = 2850 ; 2850 ; 4410
+                    PointY = -5250 ; -5250 ; -5250
+                    }
+                Line
+                    {
+                    Source = Cmp ;  4 ;  2 ; -1
+                    Sink = Pnt ;  1 ; -1 ; 0
+                    PointX = 1935 ; -375 ; -375 ; -2400
+                    PointY = -5250 ; -5250 ; -6000 ; -6000
+                    }
+                Line
+                    {
+                    Source = Pnt ;  1 ; -1 ; 0
+                    Sink = Prt ;  1 ;  1 ; 0
+                    PointX = -2400 ; -2400 ; -4875
+                    PointY = -6000 ; -6225 ; -6225
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; -1
+                    Sink = Pnt ;  2 ; -1 ; 0
+                    PointX = -2340 ; -2775 ; -2775 ; 2250 ; 2250
+                    PointY = -2025 ; -2025 ; -975 ; -975 ; -1800
+                    }
+                Line
+                    {
+                    Source = Prt ;  2 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  1 ; -1
+                    PointX = -4875 ; -4875 ; -2550 ; -2550 ; -840
+                    PointY = -4950 ; -4950 ; -4950 ; -3825 ; -3825
+                    }
+                Line
+                    {
+                    Source = Prt ;  3 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  3 ; -1
+                    PointX = -4875 ; -4875 ; -2700 ; -2700 ; -840
+                    PointY = -3675 ; -3675 ; -3675 ; -3525 ; -3525
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  1 ; 0
+                    Sink = Pnt ;  4 ; -1 ; 0
+                    PointX = 75 ; 75 ; 450
+                    PointY = -3750 ; -3750 ; -3750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; 0
+                    Sink = Pnt ;  3 ; -1 ; 0
+                    PointX = -1425 ; -1200 ; -1200
+                    PointY = -2025 ; -2025 ; -2775
+                    }
+                Line
+                    {
+                    Source = Prt ;  5 ; 0 ; -1
+                    Sink = Pnt ;  2 ; -1 ; 0
+                    PointX = 4485 ; 2250 ; 2250
+                    PointY = -1800 ; -1800 ; -1800
+                    }
+                Line
+                    {
+                    Source = Pnt ;  2 ; -1 ; 0
+                    Sink = Cmp ;  1 ;  1 ; 0
+                    PointX = 2250 ; 2250 ; 1875
+                    PointY = -1800 ; -2025 ; -2025
+                    }
+                Line
+                    {
+                    Source = Prt ;  6 ; 0 ; -1
+                    Sink = Pnt ;  3 ; -1 ; 0
+                    PointX = 4485 ; -3450 ; -3450 ; -1200
+                    PointY = 75 ; 75 ; -2775 ; -2775
+                    }
+                Line
+                    {
+                    Source = Pnt ;  3 ; -1 ; 0
+                    Sink = Cmp ;  3 ;  2 ; -1
+                    PointX = -1200 ; -1200 ; -840
+                    PointY = -2775 ; -3675 ; -3675
+                    }
+                Line
+                    {
+                    Source = Cmp ;  4 ;  3 ; -1
+                    Sink = Pnt ;  4 ; -1 ; 0
+                    PointX = 1935 ; 450 ; 450
+                    PointY = -5025 ; -5025 ; -3750
+                    }
+                Line
+                    {
+                    Source = Pnt ;  4 ; -1 ; 0
+                    Sink = Cmp ;  1 ;  1 ; -1
+                    PointX = 450 ; 450 ; 450 ; 450 ; 960
+                    PointY = -3750 ; -3750 ; -3750 ; -2025 ; -2025
+                    }
+                }
+            }
+                Atomic
+                    {
+                    Name = GnuPlot0
+                    Ports = 5 ; 0
+                    Path = sinks/gnuplot.h
+                    Description = Plot input signal using GnuPlot
+                    Graphic
+                        {
+                        Position = 9195 ; -4575
+                        Dimension = 675 ; 750
+                        Direction = Right
+                        Color = 15
+                        Icon = %sinks%gnuplot.svg
+                        }
+                    Parameters
+                        {
+                        Inputs = Str; %Inputs ; Number of inputs
+                        Format = Str; set xrange [0:%tf] @ set grid @ set title 'Plot' ; General Formatting (use @ as line break)
+                        Format1 = Str; title 'Alarmas' ; Formatting options for input 1
+                        Format2 = Str; with lines title 'Salida actuador' ; Formatting options for input 2
+                        Format3 = Str; with lines title 'Sensor flujo' ; Formatting options for input 3
+                        Format4 = Str; with lines title 'ordenes medicas' ; Formatting options for input 4
+                        Format5 = Str; title 'fin de bolsa' ; Formatting options for input 5
+                        }
+                    }
+                Atomic
+                    {
+                    Name = LoggerDeEventos
+                    Ports = 6 ; 0
+                    Path = proyecto-bomba-infusion/logger.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = 9195 ; -975
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        File Name = Str; event-log.csv ; Nombre del archivo csv en el que se va a almacenar el log de eventos de la simulacion.\nEl formato es:\nTIME,TIPO_SENIAL,VALOR
+                        }
+                    }
+                Atomic
+                    {
+                    Name = GeneradorConfirmacionEnfermero
+                    Ports = 1 ; 1
+                    Path = proyecto-bomba-infusion/confirmacionenf.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -1380 ; -4455
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        UseInputs = Val; 1 ; Flag para indicar si el generador de confirmaciones deberia reaccionar a los inputs o si deberia generar confirmaciones de manera pseudoaleatoria.\n\n1 es para utilizar los inputs.\n0 es para utilizar generacion pseudoaleatoria.\n\nEs para elegir si queremos representar con "mayor fidelidad" a como reaccionaria un enfermero frente a las alarmas de la bomba.
+                        MaxBound = Val; 1800 ; Este valor funciona para definir el tiempo maximo que puede pasar entre una confirmacion y otra.\nEn caso de utilizar generacion pseudoaleatoria de confirmaciones.
+                        }
+                    }
+                Point
+                    {
+                    ConectedLines = 1 ; 2 ; 7
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 975 ; -3975
+                    }
+                Point
+                    {
+                    ConectedLines = 5 ; 6 ; 7
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 75 ; -1500
+                    }
+                Point
+                    {
+                    ConectedLines = 9 ; 10 ; 24
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 525 ; -4125
+                    }
+                Point
+                    {
+                    ConectedLines = 3 ; 11 ; 12
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 6675 ; -5400
+                    }
+                Point
+                    {
+                    ConectedLines = 13 ; 14 ; 17
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 6450 ; -5250
+                    }
+                Point
+                    {
+                    ConectedLines = 8 ; 17 ; 20
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 6000 ; -5250
+                    }
+                Point
+                    {
+                    ConectedLines = 12 ; 18 ; 19
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 7050 ; -5400
+                    }
+                Point
+                    {
+                    ConectedLines = 4 ; 21 ; 22
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 750 ; -2700
+                    }
+                Point
+                    {
+                    ConectedLines = 15 ; 23 ; 24
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = 675 ; -4500
+                    }
+                Line
+                    {
+                    Source = Cmp ;  4 ;  4 ; -1
+                    Sink = Pnt ;  1 ; -1 ; 0
+                    PointX = 9060 ; 9060 ; 4800 ; 4800 ; 975
+                    PointY = -4050 ; -4050 ; -4050 ; -3975 ; -3975
+                    }
+                Line
+                    {
+                    Source = Pnt ;  1 ; -1 ; 0
+                    Sink = Cmp ;  3 ;  2 ; -1
+                    PointX = 975 ; 975 ; 4635
+                    PointY = -3975 ; -5250 ; -5250
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  1 ; 0
+                    Sink = Pnt ;  4 ; -1 ; 0
+                    PointX = 5550 ; 5550 ; 6675
+                    PointY = -5400 ; -5400 ; -5400
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; 0
+                    Sink = Pnt ;  8 ; -1 ; 0
+                    PointX = -600 ; -600 ; 750
+                    PointY = -2700 ; -2700 ; -2700
+                    }
+                Line
+                    {
+                    Source = Cmp ;  1 ;  1 ; 0
+                    Sink = Pnt ;  2 ; -1 ; 0
+                    PointX = -600 ; -240 ; -240 ; 75
+                    PointY = -1275 ; -1275 ; -1500 ; -1500
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  1 ; -1
+                    Sink = Pnt ;  2 ; -1 ; 0
+                    PointX = 9060 ; 9060 ; 75 ; 75
+                    PointY = -750 ; -750 ; -750 ; -1500
+                    }
+                Line
+                    {
+                    Source = Pnt ;  2 ; -1 ; 0
+                    Sink = Pnt ;  1 ; -1 ; 0
+                    PointX = 75 ; 975 ; 975
+                    PointY = -1500 ; -1500 ; -3975
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  2 ; 0
+                    Sink = Pnt ;  6 ; -1 ; 0
+                    PointX = 5550 ; 5550 ; 6000
+                    PointY = -5250 ; -5250 ; -5250
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  5 ; -1
+                    Sink = Pnt ;  3 ; -1 ; 0
+                    PointX = 9060 ; 9060 ; 525 ; 525
+                    PointY = -150 ; -150 ; -150 ; -4125
+                    }
+                Line
+                    {
+                    Source = Pnt ;  3 ; -1 ; 0
+                    Sink = Cmp ;  6 ;  1 ; 0
+                    PointX = 525 ; 525 ; -600
+                    PointY = -4125 ; -4125 ; -4125
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  6 ; -1
+                    Sink = Pnt ;  4 ; -1 ; 0
+                    PointX = 9060 ; 9060 ; 6675 ; 6675
+                    PointY = 0 ; 0 ; 0 ; -5400
+                    }
+                Line
+                    {
+                    Source = Pnt ;  4 ; -1 ; 0
+                    Sink = Pnt ;  7 ; -1 ; 0
+                    PointX = 6675 ; 6675 ; 7050
+                    PointY = -5400 ; -5400 ; -5400
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  2 ; -1
+                    Sink = Pnt ;  5 ; -1 ; 0
+                    PointX = 9060 ; 9060 ; 6450 ; 6450
+                    PointY = -600 ; -600 ; -600 ; -5250
+                    }
+                Line
+                    {
+                    Source = Pnt ;  5 ; -1 ; 0
+                    Sink = Cmp ;  4 ;  2 ; -1
+                    PointX = 6450 ; 6675 ; 7275 ; 7275 ; 9060
+                    PointY = -5250 ; -5250 ; -5250 ; -4350 ; -4350
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  1 ; -1
+                    Sink = Pnt ;  9 ; -1 ; 0
+                    PointX = 4635 ; 4635 ; 675 ; 675
+                    PointY = -5400 ; -5400 ; -5400 ; -4500
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  3 ; 0
+                    Sink = Cmp ;  4 ;  3 ; -1
+                    PointX = 5550 ; 5550 ; 7050 ; 7050 ; 9060
+                    PointY = -5025 ; -5025 ; -5025 ; -4200 ; -4200
+                    }
+                Line
+                    {
+                    Source = Pnt ;  6 ; -1 ; 0
+                    Sink = Pnt ;  5 ; -1 ; 0
+                    PointX = 6000 ; 6450 ; 6450
+                    PointY = -5250 ; -5250 ; -5250
+                    }
+                Line
+                    {
+                    Source = Cmp ;  6 ;  1 ; -1
+                    Sink = Pnt ;  7 ; -1 ; 0
+                    PointX = -1515 ; -2175 ; -2175 ; 7050 ; 7050
+                    PointY = -4125 ; -4125 ; -6525 ; -6525 ; -5400
+                    }
+                Line
+                    {
+                    Source = Pnt ;  7 ; -1 ; 0
+                    Sink = Cmp ;  4 ;  1 ; -1
+                    PointX = 7050 ; 7425 ; 7425 ; 9060
+                    PointY = -5400 ; -5400 ; -4500 ; -4500
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; -1
+                    Sink = Pnt ;  6 ; -1 ; 0
+                    PointX = -1515 ; -1515 ; -2625 ; -2625 ; 6000 ; 6000
+                    PointY = -2700 ; -2700 ; -2700 ; 975 ; 975 ; -5250
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  4 ; -1
+                    Sink = Pnt ;  8 ; -1 ; 0
+                    PointX = 9060 ; 750 ; 750
+                    PointY = -300 ; -300 ; -2700
+                    }
+                Line
+                    {
+                    Source = Pnt ;  8 ; -1 ; 0
+                    Sink = Cmp ;  3 ;  3 ; -1
+                    PointX = 750 ; 1275 ; 1275 ; 4635
+                    PointY = -2700 ; -2700 ; -5025 ; -5025
+                    }
+                Line
+                    {
+                    Source = Cmp ;  4 ;  5 ; -1
+                    Sink = Pnt ;  9 ; -1 ; 0
+                    PointX = 9060 ; 675 ; 675
+                    PointY = -3900 ; -3900 ; -4500
+                    }
+                Line
+                    {
+                    Source = Pnt ;  9 ; -1 ; 0
+                    Sink = Pnt ;  3 ; -1 ; 0
+                    PointX = 675 ; 675 ; 525
+                    PointY = -4500 ; -4125 ; -4125
+                    }
+        }
+    }
