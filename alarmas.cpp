@@ -52,8 +52,7 @@ if (xv == ALARMA_MEDIA && port == 0.0) {
 } else if (xv == ALARMA_BAJA && port == 0.0) {
 	state = ALARMA_BAJA;
 	sigma = 0;
-} else if (xv == CONFIRMACION_ENFERMERO && port == 1.0
-	|| xv != 0 && port == 2.0) {
+} else if ((xv == CONFIRMACION_ENFERMERO && port == 1.0)) {
 	state = CONFIRMED;
 	critical_repetitions = 0.0;
 	sigma = INF;
