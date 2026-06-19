@@ -13,7 +13,7 @@ return sigma;
 }
 void confirmacionenf::dint(double t) {
 if (useInputs == 0.0) {
-	sigma = sigma = (double) (1 + (double)(rand() % MAX_BOUND));
+	sigma = (double) (1 + (double)(rand() % MAX_BOUND));
 } else if (useInputs == 1.0) {
 	sigma = INF;
 } else {
@@ -21,7 +21,6 @@ if (useInputs == 0.0) {
 }
 }
 void confirmacionenf::dext(Event x, double t) {
-
 double xv = *(double*) x.value;
 
 if (useInputs == 1.0 && xv == ALARMA_BAJA) {

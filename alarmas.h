@@ -1,4 +1,4 @@
-//CPP:proyecto-bomba-infusion/alarmas.cpp
+//CPP:proyecto-simulacion-powerdevs/alarmas.cpp
 #if !defined alarmas_h
 #define alarmas_h
 

@@ -1,4 +1,4 @@
-//CPP:proyecto-bomba-infusion/actuador.cpp
+//CPP:proyecto-simulacion-powerdevs/actuador.cpp
 #if !defined actuador_h
 #define actuador_h
 
@@ -14,11 +14,13 @@ class actuador: public Simulator {
 // and parameters
 
 // caudal siendo inyectado.
+double OM;
 double cau;
 double sigma;
 
 double delay;
-// double DETENER;
+double desviation;
+
 #ifndef DETENER
 	#define DETENER -3.0
 #endif

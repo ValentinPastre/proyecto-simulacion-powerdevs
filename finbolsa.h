@@ -1,4 +1,4 @@
-//CPP:proyecto-bomba-infusion/finbolsa.cpp
+//CPP:proyecto-simulacion-powerdevs/finbolsa.cpp
 #if !defined finbolsa_h
 #define finbolsa_h
 
@@ -17,6 +17,7 @@ double sigma;
 double total_capacity;
 double actual_capacity;
 double flowOut;
+double outputCount;
 
 double finBolsa;
 #ifndef FINBOLSA
@@ -24,6 +25,9 @@ double finBolsa;
 #endif
 #ifndef INF
 	#define INF 10e20
+#endif
+#ifndef CONFIRMACION_ENFERMERO
+	#define CONFIRMACION_ENFERMERO -2.0
 #endif
 public:
 	finbolsa(const char *n): Simulator(n) {};

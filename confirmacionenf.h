@@ -1,4 +1,4 @@
-//CPP:proyecto-bomba-infusion/confirmacionenf.cpp
+//CPP:proyecto-simulacion-powerdevs/confirmacionenf.cpp
 #if !defined confirmacionenf_h
 #define confirmacionenf_h
 

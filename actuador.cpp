@@ -3,16 +3,24 @@ void actuador::init(double t,...) {
 va_list parameters;
 va_start(parameters,t);
 
-cau = 0;
+OM = 0.0;
+cau = 0.0;
 sigma = INF;
 delay = va_arg(parameters, double);
-// DETENER = va_arg(parameters, double);
+desviation = va_arg(parameters, double);
 }
 double actuador::ta(double t) {
 return sigma;
 }
 void actuador::dint(double t) {
-sigma = INF;
+if (cau != 0.0) {
+	double min = (OM - (OM * desviation));
+	double max = (OM + (OM * desviation));
+	cau = min + ((((double)rand() + 1.0) / ((double)RAND_MAX + 1.0)) * (max - min));
+	sigma = 60 + (double)(rand() % 300);
+} else {
+	sigma = INF;
+}
 }
 void actuador::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -23,13 +31,15 @@ void actuador::dext(Event x, double t) {
 
 double xv = *(double*)x.value;
 
-double min = (xv - (xv * 0.12));
-double max = (xv + (xv * 0.12));
+double min = (xv - (xv * desviation));
+double max = (xv + (xv * desviation));
 
 if (xv != DETENER) {
+	OM = xv;
 	cau = min + ((((double)rand() + 1.0) / ((double)RAND_MAX + 1.0)) * (max - min));
 } else {
-	cau = 0;
+	OM = 0.0;
+	cau = 0.0;
 }
 
 sigma = (((double)rand() + 1.0) / ((double)RAND_MAX + 1.0)) * delay;
