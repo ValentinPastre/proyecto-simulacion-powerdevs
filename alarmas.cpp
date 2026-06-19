@@ -47,6 +47,7 @@ if (xv == ALARMA_MEDIA && port == 0.0) {
 	sigma = 0.0;
 } else if (xv == ALARMA_CRITICA && port == 0.0) {
 	state = ALARMA_CRITICA;
+	critical_repetitions = 0.0;
 	sigma = 0.0;
 } else if (xv == ALARMA_BAJA && port == 0.0) {
 	state = ALARMA_BAJA;

@@ -15,7 +15,7 @@ Root-Coordinator
       Simulator
        {
         Path = proyecto-simulacion-powerdevs/actuador.h
-        Parameters = 5.000000e-01,1.200000e-01
+        Parameters = 5.000000e-01,1.600000e-01
        }
       Simulator
        {
