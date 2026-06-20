@@ -17,7 +17,7 @@ if (cau != 0.0) {
 	double min = (OM - (OM * desviation));
 	double max = (OM + (OM * desviation));
 	cau = min + ((((double)rand() + 1.0) / ((double)RAND_MAX + 1.0)) * (max - min));
-	sigma = 60 + (double)(rand() % 300);
+	sigma = 1 + (double)(rand() % 600);
 } else {
 	sigma = INF;
 }

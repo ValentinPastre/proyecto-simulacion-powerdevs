@@ -52,7 +52,7 @@ Root-Coordinator
   Simulator
    {
     Path = proyecto-simulacion-powerdevs/finbolsa.h
-    Parameters = 1.000000e+03
+    Parameters = 5.000000e+02
    }
   Simulator
    {

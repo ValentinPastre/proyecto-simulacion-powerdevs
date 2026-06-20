@@ -358,7 +358,7 @@ Coupled
                         }
                     Parameters
                         {
-                        capacity = Val; 1000 ; Capacidad de la bolsa (en mililitros).\nDebe ser mayor o igual a 0
+                        capacity = Val; 500 ; Capacidad de la bolsa (en mililitros).\nDebe ser mayor o igual a 0
                         }
                     }
                 Atomic
