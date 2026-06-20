@@ -67,7 +67,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks/gnuplot.h
-    Parameters = 5.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","title 'Alarmas'","title 'Sensor flujo'","with lines title 'Ordenes medicas'","title 'Fin de bolsa'","title 'Confirmaciones'"
+    Parameters = 5.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","title 'Alarmas'","with lines title 'Sensor flujo'","with lines title 'Ordenes medicas'","title 'Fin de bolsa'","title 'Confirmaciones'"
    }
   EIC
    {

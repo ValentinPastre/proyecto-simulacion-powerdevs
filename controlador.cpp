@@ -56,7 +56,7 @@ if (xv > 0.0 && port == 0.0 && state == STOPPED) {
 	SFn = controlador::flowCount(SFn, xv);
 	sigma = 0.0;
 } else if (port == 1.0 && SFn > 5.0 && SFn < 10.0 && state == RUNNING && controlador::flowFix(SFn) == 0.0) {
-	SFn = 0.0;
+	SFn = controlador::flowCount(SFn, xv);
 	sigma = 0.0;
 } else if (port == 1.0 && SFn >= 5.0 && SFn < 6.0 && state == RUNNING) {
 	SFn = controlador::flowCount(SFn, xv);

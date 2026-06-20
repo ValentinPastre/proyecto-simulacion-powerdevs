@@ -1,4 +1,4 @@
-//CPP:proyecto-bomba-infusion/logger.cpp
+//CPP:proyecto-simulacion-powerdevs/logger.cpp
 #if !defined logger_h
 #define logger_h
 
@@ -11,6 +11,7 @@
 class logger: public Simulator { 
 double sigma;
 FILE *FOutput;
+char* FName;
 double timeCounter;
 public:
 	logger(const char *n): Simulator(n) {};

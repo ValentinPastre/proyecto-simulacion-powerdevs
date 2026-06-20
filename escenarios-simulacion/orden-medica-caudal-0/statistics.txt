@@ -1,0 +1,4 @@
+Tiempo de respuesta promedio a los desvios: 10.502800
+Tiempo de respuesta promedio a los fines de bolsa: NaN
+Cantidad de detenciones de la bomba: 11
+Porcentaje de tiempo con infusion correcta respecto al tiempo total de la simulacion: 11.76

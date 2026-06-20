@@ -3,7 +3,6 @@ void logger::init(double t,...) {
 va_list parameters;
 va_start(parameters,t);
 
-char* FName;
 FName = va_arg(parameters, char*);
 
 sigma = 10e20;
@@ -23,12 +22,6 @@ void logger::dint(double t) {
 sigma = 10e20;
 }
 void logger::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
-
 double xv = *(double*) x.value;
 double port = x.port;
 
@@ -57,13 +50,6 @@ if (FOutput != NULL) {
 }
 }
 Event logger::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
-
-
 return Event();
 }
 void logger::exit() {
