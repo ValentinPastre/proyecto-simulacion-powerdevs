@@ -44,20 +44,27 @@ if (xv > 0.0 && port == 0.0 && state == STOPPED) {
 } else if (xv > 0.0 && port == 0.0 && state == RUNNING) {
 	OM = xv;
 	sigma = (double)(rand() % 3);
+
+	// """Solucion""" para el problema de los 5 segundos de la alarma media.
+	SFn = (int) SFn - sigma;
 } else if (xv == 0.0 && port == 0.0 && state == RUNNING) {
 	OM = xv;
 	state = STOPPING;
 	sigma = (double)(rand() % 3);
-} else if (port == 1.0 && SFn >= 10.0 && SFn < 11.0 && state == RUNNING) { // Hago este intervalo por si hay algun error de redondeo con los doubles.
+} else if (port == 1.0 && SFn >= 10.0 && SFn < 11.0 && state == RUNNING) {
+	// Hago este intervalo por si hay algun error de redondeo con los doubles.
 	SFn = controlador::flowCount(SFn, xv);
 	sigma = 0.0;
-} else if (port == 1.0 && SFn >= 5.0 && SFn < 6.0 && state == RUNNING) { // Hago este intervalo por si hay algun error de redondeo con los doubles.
+} else if (port == 1.0 && SFn > 5.0 && SFn < 10.0 && state == RUNNING && controlador::flowFix(SFn) == 0.0) {
+	SFn = 0.0;
+	sigma = 0.0;
+} else if (port == 1.0 && SFn >= 5.0 && SFn < 6.0 && state == RUNNING) {
 	SFn = controlador::flowCount(SFn, xv);
 	sigma = 0.0;
 } else if (port == 2.0 && state == RUNNING && SFn <= 10.0) {
 	FB = FINBOLSA;
 	sigma = 0.0;
-} else if (port == 1.0 && state != STOPPED) {
+} else if (port == 1.0 && state == RUNNING) {
 	SFn = controlador::flowCount(SFn, xv);
 	sigma = sigma - e;
 } else if (port == 3.0 && state == STOPPED && OM != 0.0) {
@@ -65,15 +72,11 @@ if (xv > 0.0 && port == 0.0 && state == STOPPED) {
 	FB = NOFINBOLSA;
 	state = START;
 	sigma = (double)(rand() % 3);
+} else {
+	sigma = sigma - e;
 }
 }
 Event controlador::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
-
 if (state == STOPPING) {
 	out = DETENER;
 	outPort = 0;
@@ -94,11 +97,9 @@ if (state == STOPPING) {
 return Event(&out, outPort);
 }
 void controlador::exit() {
-//Code executed at the end of the simulation.
-
 /*
 double controlador::flowFix(double x) {
-	if (rand() <= 0.75) {
+	if (((double)rand() / RAND_MAX) <= 0.70) {
 		return 0;
 	} else {
 		return x;
@@ -117,7 +118,7 @@ double controlador::flowCount(double x, double y) {
 }
 
 double controlador::flowFix(double x) {
-	if (rand() <= 0.75) {
+	if (((double)rand() / RAND_MAX) <= 0.20) {
 		return 0;
 	} else {
 		return x;

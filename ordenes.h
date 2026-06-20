@@ -1,4 +1,4 @@
-//CPP:proyecto-bomba-infusion/ordenes.cpp
+//CPP:proyecto-simulacion-powerdevs/ordenes.cpp
 #if !defined ordenes_h
 #define ordenes_h
 
@@ -10,12 +10,12 @@
 
 
 class ordenes: public Simulator { 
-// Declare the state,
-// output variables
-// and parameters
 double sigma;
 double lambda_parameter;
 double out;
+
+// parametro para simular el caso de que salga una orden medica con caudal igual a 0
+double totalTime;
 public:
 	ordenes(const char *n): Simulator(n) {};
 	void init(double, ...);

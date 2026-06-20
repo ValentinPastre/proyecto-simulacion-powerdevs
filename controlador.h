@@ -47,9 +47,6 @@ double outPort;
 #define STOPPING -9.0
 #define STOPPED -10.0
 #define NOFINBOLSA -11.0
-#ifndef EMITING_CRITICAL
-	#define EMITING_CRITICAL -13.0
-#endif
 
 
 

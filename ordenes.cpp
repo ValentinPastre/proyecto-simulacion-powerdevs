@@ -5,7 +5,7 @@ va_start(parameters,t);
 
 sigma = 0;
 lambda_parameter = va_arg(parameters, double);
-
+totalTime = 0.0;
 }
 double ordenes::ta(double t) {
 //This function returns a double.
@@ -16,23 +16,18 @@ sigma=-log(((double)rand() + 1.0) / ((double)RAND_MAX + 1.0)) / lambda_parameter
 //sigma=(double)(rand() % 3600);
 }
 void ordenes::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
 
 }
 Event ordenes::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
+//totalTime += e;
 
-// double* out = new double();
-// *out = (double)(rand() % 200);
-out = (double)(rand() % 200);
+//if (totalTime < 10000) {
+	out = (double)(rand() % 200);
+/*
+} else {
+	out = 0.0;
+}
+*/
 return Event(&out, 0);
 }
 void ordenes::exit() {
