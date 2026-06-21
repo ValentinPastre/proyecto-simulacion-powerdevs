@@ -101,7 +101,7 @@ Event controlador::lambda(double t) {
 void controlador::exit() {
   /*
   double controlador::flowFix(double x) {
-         if (((double)rand() / RAND_MAX) <= 0.70) {
+         if (((double)rand() / RAND_MAX) <= 0.20) {
                  return 0;
          } else {
                  return x;
@@ -120,7 +120,7 @@ void controlador::exit() {
 }
 
 double controlador::flowFix(double x) {
-  if (((double)rand() / RAND_MAX) <= 0.70) {
+  if (((double)rand() / RAND_MAX) <= 0.20) {
     return 0;
   } else {
     return x;
