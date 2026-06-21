@@ -72,6 +72,11 @@ if (xv > 0.0 && port == 0.0 && state == STOPPED) {
 	FB = NOFINBOLSA;
 	state = START;
 	sigma = (double)(rand() % 3);
+} else if (port == 3.0 && state == STOPPED && OM == 0.0) {
+	SFn = 0.0;
+	FB = NOFINBOLSA;
+	state = STOPPED;
+	sigma = INF;
 } else {
 	sigma = sigma - e;
 }
