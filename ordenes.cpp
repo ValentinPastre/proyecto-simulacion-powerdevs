@@ -1,7 +1,9 @@
 #include "ordenes.h"
+#include "constantes.h"
 void ordenes::init(double t, ...) {
   va_list parameters;
   va_start(parameters, t);
+  srand(genSeed);
 
   sigma = 0;
   lambdaParameter = va_arg(parameters, double);

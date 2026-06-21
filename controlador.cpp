@@ -1,7 +1,10 @@
 #include "controlador.h"
-void controlador::init(double t,...) {
+#include "constantes.h"
+#include <cstdlib>
+void controlador::init(double t, ...) {
   va_list parameters;
   va_start(parameters, t);
+  srand(genSeed);
 
   OM = 0.0;
   SFn = 0.0;
@@ -9,9 +12,7 @@ void controlador::init(double t,...) {
   state = STOPPED;
   sigma = INF;
 }
-double controlador::ta(double t) {
-return sigma; 
-}
+double controlador::ta(double t) { return sigma; }
 void controlador::dint(double t) {
   if (state == STOPPING) {
     state = STOPPED;
@@ -98,39 +99,39 @@ Event controlador::lambda(double t) {
   return Event(&out, outPort);
 }
 void controlador::exit() {
-/*
+  /*
+  double controlador::flowFix(double x) {
+         if (((double)rand() / RAND_MAX) <= 0.70) {
+                 return 0;
+         } else {
+                 return x;
+         }
+  }
+
+  double controlador::flowCount(double x, double y) {
+         if ((y >= OM + (OM * 0.1)) || (y <= OM - (OM * 0.1))) {
+                 x += 1;
+                 return x;
+         } else {
+                 return 0;
+         }
+  }
+  */
+}
+
 double controlador::flowFix(double x) {
-       if (((double)rand() / RAND_MAX) <= 0.70) {
-               return 0;
-       } else {
-               return x;
-       }
+  if (((double)rand() / RAND_MAX) <= 0.70) {
+    return 0;
+  } else {
+    return x;
+  }
 }
 
 double controlador::flowCount(double x, double y) {
-       if ((y >= OM + (OM * 0.1)) || (y <= OM - (OM * 0.1))) {
-               x += 1;
-               return x;
-       } else {
-               return 0;
-       }
-}
-*/
-}
-
-double controlador::flowFix(double x) {
-       if (((double)rand() / RAND_MAX) <= 0.70) {
-               return 0;
-       } else {
-               return x;
-       }
-}
-
-double controlador::flowCount(double x, double y) {
-       if ((y >= OM + (OM * 0.1)) || (y <= OM - (OM * 0.1))) {
-               x += 1;
-               return x;
-       } else {
-               return 0;
-       }
+  if ((y >= OM + (OM * 0.1)) || (y <= OM - (OM * 0.1))) {
+    x += 1;
+    return x;
+  } else {
+    return 0;
+  }
 }

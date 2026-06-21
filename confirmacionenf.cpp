@@ -1,7 +1,10 @@
 #include "confirmacionenf.h"
+#include "constantes.h"
+#include <cstdlib>
 void confirmacionenf::init(double t, ...) {
   va_list parameters;
   va_start(parameters, t);
+  srand(genSeed);
 
   sigma = INF;
   confirmation = CONFIRMACION_ENFERMERO;

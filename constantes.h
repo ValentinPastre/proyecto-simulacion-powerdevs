@@ -15,4 +15,6 @@ const double NOFINBOLSA = -11.0;
 const double CONFIRMED = -12.0;
 const double INF = 10e20;
 
+const int genSeed = 12345;
+
 #endif
