@@ -7,15 +7,15 @@ OM = 0.0;
 cau = 0.0;
 sigma = INF;
 delay = va_arg(parameters, double);
-desviation = va_arg(parameters, double);
+deviation = va_arg(parameters, double);
 }
 double actuador::ta(double t) {
 return sigma;
 }
 void actuador::dint(double t) {
 if (cau != 0.0) {
-	double min = (OM - (OM * desviation));
-	double max = (OM + (OM * desviation));
+	double min = (OM - (OM * deviation));
+	double max = (OM + (OM * deviation));
 	cau = min + ((((double)rand() + 1.0) / ((double)RAND_MAX + 1.0)) * (max - min));
 	sigma = 1 + (double)(rand() % 600);
 } else {
@@ -23,16 +23,10 @@ if (cau != 0.0) {
 }
 }
 void actuador::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
-
 double xv = *(double*)x.value;
 
-double min = (xv - (xv * desviation));
-double max = (xv + (xv * desviation));
+double min = (xv - (xv * deviation));
+double max = (xv + (xv * deviation));
 
 if (xv != DETENER) {
 	OM = xv;
@@ -45,15 +39,9 @@ if (xv != DETENER) {
 sigma = (((double)rand() + 1.0) / ((double)RAND_MAX + 1.0)) * delay;
 }
 Event actuador::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
-
 return Event(&cau, 0);
 }
 void actuador::exit() {
-//Code executed at the end of the simulation.
+
 
 }

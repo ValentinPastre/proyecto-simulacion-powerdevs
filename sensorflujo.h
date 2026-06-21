@@ -1,4 +1,4 @@
-//CPP:proyecto-bomba-infusion/sensorflujo.cpp
+//CPP:proyecto-simulacion-powerdevs/sensorflujo.cpp
 #if !defined sensorflujo_h
 #define sensorflujo_h
 
@@ -6,13 +6,10 @@
 #include "event.h"
 #include "stdarg.h"
 
+#include "proyecto-simulacion-powerdevs/constantes.h"
 
 
 class sensorflujo: public Simulator { 
-// Declare the state,
-// output variables
-// and parameters
-
 double sigma;
 double cau;
 public:

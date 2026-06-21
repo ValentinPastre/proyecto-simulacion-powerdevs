@@ -47,7 +47,7 @@ Root-Coordinator
   Simulator
    {
     Path = proyecto-simulacion-powerdevs/confirmacionenf.h
-    Parameters = 1.000000e+00,1.800000e+03
+    Parameters = 
    }
   Simulator
    {

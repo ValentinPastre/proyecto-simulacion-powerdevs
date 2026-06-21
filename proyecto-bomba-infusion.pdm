@@ -118,8 +118,8 @@ Coupled
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = -660 ; -3960
-                        Dimension = 570 ; 720
+                        Position = -705 ; -3930
+                        Dimension = 675 ; 675
                         Direction = Right
                         Color = 15
                         Icon = None
@@ -338,8 +338,6 @@ Coupled
                         }
                     Parameters
                         {
-                        UseInputs = Val; 1 ; Flag para indicar si el generador de confirmaciones deberia reaccionar a los inputs o si deberia generar confirmaciones de manera pseudoaleatoria.\n\n1 es para utilizar los inputs.\n0 es para utilizar generacion pseudoaleatoria.\n\nEs para elegir si queremos representar con "mayor fidelidad" a como reaccionaria un enfermero frente a las alarmas de la bomba.
-                        MaxBound = Val; 1800 ; Este valor funciona para definir el tiempo maximo que puede pasar entre una confirmacion y otra.\nEn caso de utilizar generacion pseudoaleatoria de confirmaciones.
                         }
                     }
                 Atomic
