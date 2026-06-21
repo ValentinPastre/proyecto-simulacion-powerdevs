@@ -89,15 +89,15 @@ def calcular_y_guardar_estadisticas(archivo_csv, archivo_salida):
     with open(archivo_salida, 'w') as f:
         # Línea 1: Promedio de respuesta a desvíos
         if duraciones_desvios:
-            f.write(f"Tiempo de respuesta promedio a los desvios: {(sum(duraciones_desvios) / len(duraciones_desvios)):.6f}\n")
+            f.write(f"Tiempo de respuesta promedio a los desvios (seg.): {(sum(duraciones_desvios) / len(duraciones_desvios)):.6f}\n")
         else:
-            f.write("Tiempo de respuesta promedio a los desvios: NaN\n")
+            f.write("Tiempo de respuesta promedio a los desvios (seg.): NaN\n")
             
         # Línea 2: Promedio de respuesta a fin de bolsa
         if duraciones_bolsa:
-            f.write(f"Tiempo de respuesta promedio a los fines de bolsa: {(sum(duraciones_bolsa) / len(duraciones_bolsa)):.6f}\n")
+            f.write(f"Tiempo de respuesta promedio a los fines de bolsa (seg.): {(sum(duraciones_bolsa) / len(duraciones_bolsa)):.6f}\n")
         else:
-            f.write("Tiempo de respuesta promedio a los fines de bolsa: NaN\n")
+            f.write("Tiempo de respuesta promedio a los fines de bolsa (seg.): NaN\n")
             
         # Línea 3: Cantidad de detenciones (Alarma Crítica / Fin de bolsa)
         f.write(f"Cantidad de detenciones de la bomba: {detenciones}\n")

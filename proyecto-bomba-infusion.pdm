@@ -163,7 +163,7 @@ Coupled
                     Parameters
                         {
                         DELAY = Val; 0.5 ; Tiempo maximo que tarda el actuador de la bomba en iniciar.
-                        MAX_DESVIO_CAUDAL = Val; 0.12 ; Representa el maximo porcentaje que puede desviarse el caudal del actuador.
+                        MAX_DESVIO_CAUDAL = Val; 0.1 ; Representa el maximo porcentaje que puede desviarse el caudal del actuador.
                         }
                     }
                 Atomic
