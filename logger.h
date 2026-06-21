@@ -11,7 +11,9 @@
 class logger: public Simulator { 
 double sigma;
 FILE *FOutput;
+FILE *FAlarms;
 char* FName;
+char* FNameAlarms;
 double timeCounter;
 public:
 	logger(const char *n): Simulator(n) {};

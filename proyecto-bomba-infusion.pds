@@ -62,7 +62,7 @@ Root-Coordinator
   Simulator
    {
     Path = proyecto-simulacion-powerdevs/logger.h
-    Parameters = "event-log.csv"
+    Parameters = "event-log.csv","alarms-log.csv"
    }
   Simulator
    {

@@ -395,6 +395,7 @@ Coupled
                     Parameters
                         {
                         File Name = Str; event-log.csv ; Nombre del archivo csv en el que se va a almacenar el log de eventos de la simulacion.\nEl formato es:\nTIME,TIPO_SENIAL,VALOR
+                        Alarms File Name = Str; alarms-log.csv ; Nombre del archivo csv en el que se va a almacenar el log de alarmas.\nEl formato es:\nTIEMPO,ALARMA,VALOR
                         }
                     }
                 Atomic

@@ -4,6 +4,7 @@ va_list parameters;
 va_start(parameters,t);
 
 FName = va_arg(parameters, char*);
+FNameAlarms = va_arg(parameters, char*);
 
 sigma = 10e20;
 FOutput = fopen(FName, "w");
@@ -12,6 +13,13 @@ if (FOutput != NULL) {
 	fclose(FOutput);
 }
 FOutput = fopen(FName, "a");
+
+FAlarms = fopen(FNameAlarms, "w");
+if (FAlarms != NULL) {
+	fprintf(FAlarms, "Time,Signal_Type,Value\n");
+	fclose(FAlarms);
+}
+FAlarms = fopen(FNameAlarms, "a");
 
 timeCounter = 0.0;
 }
@@ -39,13 +47,25 @@ if (FOutput != NULL) {
 	} else if (port == 4.0) {
 		fprintf(FOutput, "%g,CONFIRMACION_ENFERMERO,%g\n", timeCounter, xv);
 	} else if (port == 5.0) {
-			if (xv == -4.0) {
-				fprintf(FOutput, "%g,ALARMA_BAJA,%g\n", timeCounter, xv);
-			} else if (xv == -5.0) {
-				fprintf(FOutput, "%g,ALARMA_MEDIA,%g\n", timeCounter, xv);
-			} else if (xv == -6.0) {
-				fprintf(FOutput, "%g,ALARMA_CRITICA,%g\n", timeCounter, xv);
-			}
+		if (xv == -4.0) {
+			fprintf(FOutput, "%g,ALARMA_BAJA,%g\n", timeCounter, xv);
+		} else if (xv == -5.0) {
+			fprintf(FOutput, "%g,ALARMA_MEDIA,%g\n", timeCounter, xv);
+		} else if (xv == -6.0) {
+			fprintf(FOutput, "%g,ALARMA_CRITICA,%g\n", timeCounter, xv);
+		}
+	}
+}
+
+if (FAlarms != NULL) {
+	if (port == 5.0) {
+		if (xv == -4.0) {
+			fprintf(FAlarms, "%g,ALARMA_BAJA,%g\n", timeCounter, xv);
+		} else if (xv == -5.0) {
+			fprintf(FAlarms, "%g,ALARMA_MEDIA,%g\n", timeCounter, xv);
+		} else if (xv == -6.0) {
+			fprintf(FAlarms, "%g,ALARMA_CRITICA,%g\n", timeCounter, xv);
+		}
 	}
 }
 }
@@ -55,5 +75,8 @@ return Event();
 void logger::exit() {
 if (FOutput != NULL) {
 	fclose(FOutput);
+}
+if (FAlarms != NULL) {
+	fclose(FAlarms);
 }
 }

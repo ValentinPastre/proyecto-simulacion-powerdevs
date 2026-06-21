@@ -13,7 +13,7 @@ def calcular_y_guardar_estadisticas(archivo_csv, archivo_salida):
     
     # Estados para fin de bolsa
     tiempo_fin_bolsa = None
-    esperando_confirmacion_bolsa = False
+    esperando_detencion_por_bolsa = False  # Cambiado para reflejar la nueva lógica
     
     # Estados para las detenciones
     causa_detencion_activa = False
@@ -33,8 +33,6 @@ def calcular_y_guardar_estadisticas(archivo_csv, archivo_salida):
             valor = float(row['Value'])
             
             # --- Lógica de acumulación de tiempo (Porcentaje en rango) ---
-            # Antes de procesar el nuevo evento, calculamos el tiempo transcurrido 
-            # desde el último evento y vemos si el sistema estaba dentro del rango.
             if ultimo_tiempo is not None:
                 dt = t - ultimo_tiempo
                 tiempo_total += dt
@@ -56,6 +54,11 @@ def calcular_y_guardar_estadisticas(archivo_csv, archivo_salida):
                     detenciones += 1
                     causa_detencion_activa = False
                 
+                # NUEVO: Cálculo del intervalo entre fin de bolsa y caudal = 0
+                if caudal_actual == 0 and esperando_detencion_por_bolsa:
+                    duraciones_bolsa.append(t - tiempo_fin_bolsa)
+                    esperando_detencion_por_bolsa = False
+                
                 # Evaluación de los intervalos de desvío
                 if orden_actual is not None and orden_actual > 0:
                     desvio_actual = abs(caudal_actual - orden_actual) / orden_actual
@@ -72,15 +75,10 @@ def calcular_y_guardar_estadisticas(archivo_csv, archivo_salida):
             elif tipo == 'FIN_BOLSA':
                 causa_detencion_activa = True
                 tiempo_fin_bolsa = t
-                esperando_confirmacion_bolsa = True
+                esperando_detencion_por_bolsa = True  # Activamos la espera de que el actuador baje a 0
                 
             elif tipo == 'ALARMA_CRITICA':
                 causa_detencion_activa = True
-                
-            elif tipo == 'CONFIRMACION_ENFERMERO':
-                if esperando_confirmacion_bolsa:
-                    duraciones_bolsa.append(t - tiempo_fin_bolsa)
-                    esperando_confirmacion_bolsa = False
             
             ultimo_tiempo = t
 
